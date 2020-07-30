@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<?php
+	include_once 'C:\devesh\Xampp\htdocs\Page1.inc.php'
+?>
+
+<html>
+<head>
+<style>
+body {
+		
+		font-family: Arial, Helvetica, sans-serif;
+		background-image: url("https://images.wallpaperscraft.com/image/book_glasses_tea_chair_cup_garden_80317_4272x3123.jpg");
+		background-repeat:no-repeat;
+		background-size: cover;
+		
+}
+ 
+* {
+  box-sizing: border-box;
+}
+.container {
+  padding: 16px;
+  background-color: white;
+}
+input[type=text], input[type=password], input[type=email]{
+  width: 50%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+  background-color: red;
+  color: white;
+  padding: 16px;
+  margin: 5px 0 22px 0;
+  border: none;
+  cursor: pointer;
+  width: 25%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity: 1.5;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+ 
+</style>
+</head>
+
+<body>
+<form action="Page1.inc.php" method="POST">
+<div style="container">
+<h1><b><p align="center"><font color="red" size="35">Readers	Bay </font></p></b></h1>
+<p align="center"><font color="red" >Please fill in this form to Add your Customs.</font></p>
+<p><font color ="red">Suggestions: </font><span id="txtHint"></span></p>
+<hr>
+
+<p align="center">
+<label for="Full Name"><b><font color="red" >Full Name </font></b></label>
+<script>
+function showHint(str) {
+  if (str.length == 0) {
+    document.getElementById("txtHint").innerHTML = "";
+    return;
+  } else {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("txtHint").innerHTML = this.responseText;
+      }
+    };
+    xmlhttp.open("GET", "gethint.php?q=" + str, true);
+    xmlhttp.send();
+  }
+}
+</script>
+
+<input type="text" onkeyup="showHint(this.value)" placeholder="Enter Full Name" name="fname"  autofocus="Full"><br/>
+
+
+<label for="Email ID"><b><font color="red" >Email ID  </font></b></label>
+<input type="email"  placeholder="Enter Email ID" name="email"><br />
+
+<label for="password"><b><font color="red" >Create password</font></b></label>
+<input type="password"  placeholder="Enter Password" name="password"><br />
+<hr>
+    <p><font color="red" >By creating an account you agree to our <a href="#">Terms & Privacy</a>.</font></p>
+
+<div style="text-align:center"> 
+<button type="submit" name="submit" onclick="popup();" class="registerbtn" value="Register">Register</button>
+
+</div>
+</p></form>
+</div>
+
+
+</body>
+</html>
